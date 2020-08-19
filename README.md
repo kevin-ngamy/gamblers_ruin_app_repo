@@ -46,24 +46,9 @@ Sn is the random walk’s position after n steps. The sequence of S0, S1,
 S2… is a discrete-time stochastic process whose state space is Z, the
 set of all integers. Here you’ll find that the probability of ruin after
 certain number of trials is (n-k)/n.
-
-## Generating event outcome for each number of trial
-
-The code below is the loop function to generate sequences of outcome
-from coin flips, returning (randomly) value of 1 and -1 at each trial.
-
-## Introduction
-
-This is my [shinyapp project](https://en.wikipedia.org/wiki/Bernoulli_distribution) to demonstrate the stochastic process or random walk in a probability game using gambler's ruin problem as the objective.
-You flip a coin and choose for example, head. You bet your money on each flip, Each time the head side of the coin appeared you earn 1$ (+1), otherwise tail appeared you lose $1 (-1). You start with initial stake (money) of k dollar, and you want to make profit of e dollar (e > k). The game stops if you either reach e dollar or win, or lose all your money to 0 (ruin). How much money you'd have after certain number of trials (flips)? Will you eventually reach e dollar (win) or other wise lose all your money to 0 (ruined) after certain trials? This is a classic probabiliy game first disscussed by Blaise Pascal and Pierre de Fermat. 
-
-
-### Mathematical Overview
-
-When the coin is tossed, it either toss head or tail, with probability of p (head) and 1-p (tail). Consider when we start with initial money or stake of k dollar, and bet on each flip. Our money will exhibit a random walk (stochastic process) phenomenon in which it either unpredictably go or down. A stochastic process is built as follows:
-Let X1, X2,... be a sequence of i.i.d (independent and identically distributed) random variables with Xk = +1 with probability of P and Xk = -1 with probabiity of 1-P. for k 1 we set Sn = X1 + ... + Xn, for n >= 1 with S0 = 0, Then Sn is the random walk's position after n steps. The sequence of S0, S1, S2... is a discrete-time stochastic process whose state space is Z, the set of all integers. Here you'll find that the probability of ruin after certain number of trials is (n-k)/n.
-
-
+Math reference :
+* [random walk gambler's ruin (MIT)](https://web.mit.edu/neboat/Public/6.042/randomwalks.pdf)
+* [gambler's ruin video (MIT)](https://www.youtube.com/watch?v=6wUD_gp5WeE)
 
 ## Generating event outcome for each number of trial
 The code below is the loop function to generate sequences of outcome from coin flips, returning (randomly) value of 1 and -1 at each trial.
@@ -81,7 +66,6 @@ judi <- function(k,n,p) {
   }
   
 ```
-
 
 ## Monte carlo simulation
 
