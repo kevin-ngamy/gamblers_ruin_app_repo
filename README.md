@@ -7,10 +7,19 @@ This app is programmed in:
 * [Shiny framework](https://shiny.rstudio.com/)
 * HTML5
 
+## Requirements
+In order to run this app in your own machine you need:
+* [Installing Rstudio](https://rstudio.com/products/rstudio/)
+* Install Shiny package -> library(shiny)
+ * library(shinywidgets)
+ * library(shinyalert)
+ * library(ggplot2)
+ * library(plotly)
+
 ## Introduction
 
 This is my [shinyapp
-project](https://en.wikipedia.org/wiki/Bernoulli_distribution) to
+project]() to
 demonstrate the stochastic process or random walk in a probability game
 using gambler’s ruin problem as the objective. You flip a coin and
 choose for example, head. You bet your money on each flip, Each time the
@@ -149,14 +158,9 @@ time variable, this is used as the X axis when we make a plot later.
 Variable accum\_gain binds the profit and time vector and returns a data
 frame with “Money” and “Trials” variables.
 
-``` {r}
-=======
-
-```
-
 After generating the value of the money after number of simulations, next thing is to make a discrete sequence representing each trial as time variable, this is used as the X axis when we make a plot later. Variable accum_gain binds the profit and time vector and returns a data frame with "Money" and "Trials" variables.
+
 ```{r}
->>>>>>> cf608726ed8dc40adf13c052ceeffa6cb8b9e9b2
     time <- seq(1, 100, 1)
 
     accum_gain <- data.frame(cbind(profit, time))
