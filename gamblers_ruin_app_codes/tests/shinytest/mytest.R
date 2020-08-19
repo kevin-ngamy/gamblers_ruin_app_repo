@@ -1,3 +1,4 @@
+### shiny test
 app <- ShinyDriver$new("../../")
 app$snapshotInit("mytest")
 
