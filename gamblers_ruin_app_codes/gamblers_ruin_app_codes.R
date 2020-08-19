@@ -89,19 +89,20 @@ ui <- fluidPage(
             tabPanel("About Project",
                      br(h4("The purpose of this portfolio project is to run interactive monte carlo simulation on gambler's ruin problem coin flips."),
                         br("This app is programmed in R language and Shiny framework."),
-                        br("Published in 18 August 2020."),
+                        br("Published in 19 August 2020."),
                         br(),
                         p("Creator:", 
                           a("Kevin Tongam Anggatama", 
                             href = "https://www.linkedin.com/in/kevin-tongam-anggatama-001461134/", 
                             target = "_blank")),
                         br("I study economics and data science full time. Beside it, 
-                    I do mathematics and music in my free time. Currently looking for data science
+                    I do mathematics and music in my free time. This program is also to complement
+                    my studies in stochastic process. Currently looking for data science
                        internship opportunity. Any offer is more than welcomed."),
                         br(),
-                        p(h5(strong("All the codes and documentation for this app is provided in my Github:", 
+                        p(h5(strong("All the codes and documentations for this app is provided in my Github:", 
                                     a("Source Code", 
-                                      href = "https://github.com/kevin-ngamy/gamblers_ruin_project", 
+                                      href = "https://github.com/kevin-ngamy/gamblers_ruin_app_repo.git", 
                                       target = "_blank")))),
                         br(),
                         p(h5(strong("Check my another shiny apps project:", 
@@ -119,14 +120,14 @@ ui <- fluidPage(
     
 )
 
-### Code for the server backend (as the function of inputted values in UI and rendered output)
+### Code for the server backend (as the function of inputted values in UI and rendered outputs)
 server <- function(input, output) {
     
     
     shinyalert(
         title = "Hello.",
         text = "This is a simulation of Gambler's ruin problem with monte carlo simulation.
-    Please read the introduction first, and fill the input, thank you.",
+    Please read the introduction first, and fill the inputs, thank you.",
         closeOnEsc = TRUE,
         closeOnClickOutside = TRUE,
         html = FALSE,
@@ -145,7 +146,6 @@ server <- function(input, output) {
         stake <- k
         while (stake > 0 & stake < n) {
             bet <- sample(c(-1,1), 1, prob = c(1-p, p))
-            #stake <- stake + bet
             
             return(bet) # returning +1 or -1 at each trial
         }
@@ -236,13 +236,11 @@ server <- function(input, output) {
         stake <- k
         
         while (stake > 0 & stake < n) {
-            bet <- sample(c(-1,1),1,prob=c(1-p,p))
+            bet <- sample(c(-1, 1), 1, prob = c(1 - p, p))
             stake <- stake + bet
-            
-        }
-        
-        if (stake == 0) 
-            return(1) 
+            }
+        if (stake == 0)
+            return(1)
         else return(0)
         
     }
@@ -260,7 +258,6 @@ server <- function(input, output) {
     output$prob_result <- renderText( ## output of probability based on the monte carlo simulation
         
         paste("Your probability of ruin on average after", input$simul, "number of simulations is", round(sim_prob(), 4))
-        #paste("Gain mean is", mean_gain())
         
     )
     
@@ -281,9 +278,9 @@ server <- function(input, output) {
                                                  You can set your own winning probability (p), if p = 0.5 then probability of losing is q = 1 - p = 0.5 (fair game with Bernoulli distribution), 
                                                  otherwise unfair. You'll may notice that if the game is fair, your money will exhibit random walks (stochastic and unbiased) at each trial,
                                                  and if the game is unfair, it will exhibit an upward/downward drift (biased) based on the probability favor. Nevertheless the chart you
-                                                   will see is the random move of your remaining money after accumulated with the +1 or -1 result on each trial.",
+                                                   will see is the random moves of the remaining money after accumulated with the +1 or -1 result on each trial.",
                                                    br("Ruin Probability is the sum of all win or ruin results as 0 and 1, respectively, after number of monte carlo simulations divided by the number of simulations.
-                                                      It will return the probability of ruin."))),
+                                                      It will return the probability of ruin (this will take few seconds to run."))),
                                              br(h5("If the chart (money) hits the blue dashed line you win (and the game stops), if it hits the red dashed line (0) you lose
                                               (ruin) and the game stops. Now fill the inputs and simulate.")))))), 
                               title = "Introduction"))})
@@ -295,15 +292,4 @@ server <- function(input, output) {
 
 # Run the application 
 shinyApp(ui = ui, server = server)
-
-
-
-
-
-
-
-
-
-
-
 

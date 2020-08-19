@@ -15,6 +15,10 @@ In order to run this app in your own machine you need:
  * library(shinyalert)
  * library(ggplot2)
  * library(plotly)
+ 
+## Demo and Gallery
+
+![Gamblers ruin shiny app](app gallery1.png)
 
 ## Introduction
 
