@@ -19,7 +19,6 @@ ui <- fluidPage(
     br(),
     
     # Code for sidebar layout
-    
     sidebarPanel(align = "left",
                  actionBttn(
                      inputId = "intro",
