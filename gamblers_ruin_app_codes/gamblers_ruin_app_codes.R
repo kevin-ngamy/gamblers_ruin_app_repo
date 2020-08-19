@@ -97,7 +97,7 @@ ui <- fluidPage(
                         br("I am an undergrad student in Economics. I study economics, econometrics and data science full time. Beside it, 
                     I do mathematics, music, game in my free time. This program is to complement
                     my studies and your studies in stochastic process and any probabilistic statistics.
-                    It is part of my favor if you check my Github for this project and run it in your own machine.:)
+                    It is part of my favor if you check my Github for this project (all the codes and documentation are provided in my Github) and run it in your own machine.:)
                     Currently looking for data science
                        internship opportunity. Any offer is more than welcomed."),
                         br(),
