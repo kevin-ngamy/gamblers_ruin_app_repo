@@ -3,18 +3,27 @@ Created in R language and Shiny framework
 
 ## Technologies
 This app is programmed in:
-* [R language in Rstudio](https://rstudio.com/)
-* [Shiny framework](https://shiny.rstudio.com/)
-* HTML5
+1. [R language in Rstudio](https://rstudio.com/)
+  - [Shiny framework](https://shiny.rstudio.com/)
+2. HTML5
 
 ## Requirements
 In order to run this app in your own machine you need:
 * [Installing Rstudio](https://rstudio.com/products/rstudio/)
-* Install Shiny package -> library(shiny)
+* Install Shiny package
+* library(shiny)
  * library(shinywidgets)
  * library(shinyalert)
  * library(ggplot2)
  * library(plotly)
+ 
+ ```r
+ library(shiny)
+ library(shinywidgets)
+ library(shinyalert)
+ library(ggplot2)
+ library(plotly)
+ ```
 
 ## Introduction
 
@@ -53,7 +62,7 @@ Math reference :
 ## Generating event outcome for each number of trial
 The code below is the loop function to generate sequences of outcome from coin flips, returning (randomly) value of 1 and -1 at each trial.
 
-```{r}
+```r
 
 judi <- function(k,n,p) {
     # k = initial stake, n = win target, p = win probability
@@ -78,7 +87,7 @@ inputted number of simulations times. As an example, here i input k =
 head, then value of 1 means head appears (we gain +1 more dollar) and
 value of -1 means tail appears (we lose -1 dollar)
 
-``` {r}
+```r
   set.seed(123456)
     k <- 20 ## initial money
     n <-  60 ## win target ($)
@@ -102,7 +111,7 @@ money is 20 - 1 - 1 + 1 + 1 + 1 = 21 dollar.
 ## Monte carlo simulation
 This code runs monte carlo simulation by re-running or repeating the sample's outcome from function judi using inputted initial stake as k, win target input as n, and winning probability as p. Repeated up to inputted number of simulations times. As an example, here i input k = 20, n = 60, p = 0.5, and number of trials = 100 resulting in a vector of 1 and -1 representing the outcome of each coin flip trial. If we choose head, then value of 1 means head appears (we gain +1 more dollar) and value of -1 means tail appears (we lose -1 dollar)
 
-```{r}
+```r
   set.seed(123456)
 	k <- 20 ## initial money
 	n <-  60 ## win target ($)
@@ -115,7 +124,7 @@ This code runs monte carlo simulation by re-running or repeating the sample's ou
 ### Accumulating the money for each coin flip result (trial)
 Code below is a function to return the value of money after certain number of trials. Our initial money is 20$ and prior to the monte carlo simulation (simlist) we get value of (-1, -1, 1, 1, -) for the first 5 trials. Therefore given initial money of 20 dollar, at the first trial our money is (20 - 1 = 19) dollar, second trial is 20 - 1 - 1 = 18 dollar, third trial is 20 - 1 - 1 + 1 = 19 dollar and at fifth trial our money is 20 - 1 - 1 + 1 + 1 + 1 = 21 dollar.
 
-```{r}
+```r
  total_gain <- function(k, trials, monte){
       
       step <- c()
@@ -144,7 +153,7 @@ frame with “Money” and “Trials” variables.
 
 After generating the value of the money after number of simulations, next thing is to make a discrete sequence representing each trial as time variable, this is used as the X axis when we make a plot later. Variable accum_gain binds the profit and time vector and returns a data frame with "Money" and "Trials" variables.
 
-```{r}
+```r
     time <- seq(1, 100, 1)
 
     accum_gain <- data.frame(cbind(profit, time))
@@ -164,7 +173,7 @@ lose all the money to 0 dollar and said to be ruined.
 
 Code for plotting the money and sequences up to 100 trials. If the chart hits blue line (win target of 60$) then the game stops and the player win, otherwise the plot hits red line (ruin threshold of 0) the players lose all the money to 0 dollar and said to be ruined.
 
-```{r}
+```r
 
     gain_plot <- ggplot(accum_gain, aes(x = Trials, y = Money)) + 
         geom_line() + 
@@ -184,7 +193,7 @@ Code for plotting the money and sequences up to 100 trials. If the chart hits bl
 
 Distribution plot to show the distribution of the money
 
-```{r}
+```r
 dist_plot <- ggplot(accum_gain, aes(x = Money, y = Trials)) +
         geom_col(fill = "red",
                  size = 0.2) +
@@ -205,7 +214,7 @@ simulation (prob\_result) divided by number of simulations.
 
 The code below generates sample's outcome from each trial and return value of 1 if we lose our initial money to 0 (ruin) and 0 if we win or hits the win target threshold. Then the average probability of ruin is calculated by summing all the returned value from the monte carlo simulation (prob_result) divided by number of simulations.
 
-```{r}
+```r
     
     gamble <- function(k,n,p) {
       stake <- k
