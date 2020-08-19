@@ -245,4 +245,3 @@ the monte carlo simulations, the plotting. Thank you for your attention.
 The full code is provided at
 
 Alright. That's the demo of how this program works in the backend, however the actual codes for the shinyapp is different due to additional shiny syntax like reactive(), eventReactive, isolate(), input$x, User interface codes, etc. Nevertheless, these introduction document provides you clear picture of how to generate probability and probability outcome, the functions to work on certain purpose and generate results, the monte carlo simulations, the plotting. Thank you for your attention.
-The full code is provided at
