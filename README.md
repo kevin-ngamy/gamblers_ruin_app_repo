@@ -28,7 +28,7 @@ In order to run this app in your own machine you need:
 ## Introduction
 
 This is my [shinyapp
-project]() to
+project](https://kevintongam.shinyapps.io/gamblers_ruin_app/) to
 demonstrate the stochastic process or random walk in a probability game
 using gambler’s ruin problem as the objective. You flip a coin and
 choose for example, head. You bet your money on each flip, Each time the
