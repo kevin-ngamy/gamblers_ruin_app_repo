@@ -9,7 +9,7 @@ library(ggplot2)
 library(plotly)
 library(shinyalert)
 
-## Codes are separated by 2 big chunks, 1. User interface code (UI) : code for the web interface, and 2. Server (backend) code
+## Codes are separated in 2 big chunks, 1. User interface code (UI) : code for the web interface, and 2. Server (backend) code
 
 ### User Interface Code
 ui <- fluidPage(
@@ -18,7 +18,7 @@ ui <- fluidPage(
     titlePanel(strong("Gambler's Ruin Monte Carlo Simulation")),
     br(),
     
-    # Sidebar with a slider input for number of bins 
+    # Code for sidebar layout
     
     sidebarPanel(align = "left",
                  actionBttn(
@@ -27,7 +27,7 @@ ui <- fluidPage(
                      style = "stretch",
                      color = "danger"
                  ),
-                 dropdown(
+                 dropdown( # adding dropdown menu for inputs list
                      tags$h3("Inputs"),
                      pickerInput("side",
                                  label = "Select Side", 
@@ -65,7 +65,7 @@ ui <- fluidPage(
                                                   color.background = getOption("spinner.color.background", 3),
                                                   color = getOption("spinner.color", "red")),
                      
-                     useShinyalert(),
+                     useShinyalert(), # Shiny alert for popup message (credits : Dean Attali)
                      
                      style = "unite", icon = icon("sliders"),
                      status = "danger", color = "success", label = "Inputs", width = "400px", 
@@ -81,7 +81,7 @@ ui <- fluidPage(
         
         tabsetPanel(
             tabPanel("Visualization", 
-                     shinycssloaders::withSpinner(plotlyOutput("plot", 
+                     shinycssloaders::withSpinner(plotlyOutput("plot", ## Shiny withspinner adds loading animation when button is clicked (credits : Dean Attali)
                                                                width = "900px", 
                                                                height = "500px")),
                      tabPanel("Distribution Plot (re-click)", 
@@ -119,7 +119,7 @@ ui <- fluidPage(
     
 )
 
-### Code for the server backend
+### Code for the server backend (as the function of inputted values in UI and rendered output)
 server <- function(input, output) {
     
     
@@ -140,18 +140,18 @@ server <- function(input, output) {
         animation = TRUE
     )
     
-    judi <- function(k,n,p) {
+    judi <- function(k,n,p) { ## judi is the function to generate random outcome (+1 and -1) from the coin flips trials
         # k = initial stake, n = win target, p = win probability
         stake <- k
         while (stake > 0 & stake < n) {
             bet <- sample(c(-1,1), 1, prob = c(1-p, p))
             #stake <- stake + bet
             
-            return(bet)
+            return(bet) # returning +1 or -1 at each trial
         }
     }
     
-    sim <- eventReactive(input$rep_sim, {
+    sim <- eventReactive(input$rep_sim, { ## sim is the Monte carlo simulation using the inputted values, simulated for inputted number of simulations times
         
         replicate(input$simul, judi(input$init_stake, 
                                     input$win_target, 
@@ -159,7 +159,7 @@ server <- function(input, output) {
         
     })
     
-    total_gain <- function(k, trials, monte){
+    total_gain <- function(k, trials, monte){ ## Total gain is the function to generate sequences of accumulated money gain or lose (sum of initial money with returned sim value)
         
         step <- c()
         
@@ -174,19 +174,19 @@ server <- function(input, output) {
         
     }
     
-    profit <- reactive({
+    profit <- reactive({ ## generates value from total gain function 
         
         total_gain(input$init_stake, input$simul, sim())
         
     })
     
-    time <- reactive({
+    time <- reactive({ ## generate series of sequence from 1 to inputted number of simulations
         
         seq(1, input$simul, 1)
         
     })
     
-    accum_gain <- reactive({
+    accum_gain <- reactive({ ## accum_gain returns profit and time as data frame with column 1 = money, column 2 = number of trials
         
         gain_data <- data.frame(cbind(profit(), time()))
         names(gain_data)[1] <- "Money"
@@ -195,7 +195,7 @@ server <- function(input, output) {
         
     })
     
-    viz <-  eventReactive(input$rep_sim, {
+    viz <-  eventReactive(input$rep_sim, { ## Viz is the visualization output (line chart) from the accum_gain
         
         gain_plot <- ggplot(accum_gain(), aes(x = Trials, y = Money)) + 
             geom_line() + 
@@ -232,7 +232,7 @@ server <- function(input, output) {
     })
     
     
-    gamble <- function(k,n,p) {
+    gamble <- function(k,n,p) { ## gamble function returns value of 1 if the simulations hit 0 (ruin) and 1 if it hits winning target (n)
         stake <- k
         
         while (stake > 0 & stake < n) {
@@ -257,7 +257,7 @@ server <- function(input, output) {
         
     })
     
-    output$prob_result <- renderText(
+    output$prob_result <- renderText( ## output of probability based on the monte carlo simulation
         
         paste("Your probability of ruin on average after", input$simul, "number of simulations is", round(sim_prob(), 4))
         #paste("Gain mean is", mean_gain())
