@@ -94,9 +94,11 @@ ui <- fluidPage(
                           a("Kevin Tongam Anggatama", 
                             href = "https://www.linkedin.com/in/kevin-tongam-anggatama-001461134/", 
                             target = "_blank")),
-                        br("I study economics and data science full time. Beside it, 
-                    I do mathematics and music in my free time. This program is also to complement
-                    my studies in stochastic process. Currently looking for data science
+                        br("I am an undergrad student in Economics. I study economics, econometrics and data science full time. Beside it, 
+                    I do mathematics, music, game in my free time. This program is to complement
+                    my studies and your studies in stochastic process and any probabilistic statistics.
+                    It is part of my favor if you check my Github for this project and run it in your own machine.:)
+                    Currently looking for data science
                        internship opportunity. Any offer is more than welcomed."),
                         br(),
                         p(h5(strong("All the codes and documentations for this app is provided in my Github:", 
@@ -267,21 +269,21 @@ server <- function(input, output) {
                                             a("Kevin Tongam Anggatama", 
                                               href = "https://www.linkedin.com/in/kevin-tongam-anggatama-001461134/", 
                                               target = "_blank"))),
-                                       br(h5("You bet on coin flips and choose head side. Each time the head side of the coin appeared you earn 1$ (+1),
-                                           otherwise tail appeared you lose $1 (-1).", "You start with initial stake (money) of k dollar, and you want your money to reach e dollar (e > k). 
-                                           The game stops if you either reach e dollar (win), or lose all your money to 0 (ruin). 
+                                       br(h5("Suppose you bet on coin flips and choose the head side. On each flip, Each time the head side of the coin appeared you earn 1$ (+1),
+                                           otherwise, if tail appeared you lose $1 (-1).", "You start with initial stake (money) of k dollar, and you want your money to reach e dollar where e > k. 
+                                           The game stops if you either reach e dollar (win), or lose all your money to 0 (ruin) after certain number of trials or flips. 
                                            How much money you would have after certain number of trials (flips)? Will you eventually reach e dollar (win) or lose all your money to 0 (ruined)
                                            after certain trials?
                                            This is a classic probabiliy game names Gambler's run problem, first disscussed by Blaise Pascal and Pierre de Fermat.",
-                                             br(h5("on each flip you will get either +1 or -1. Here you will simulate the game to see how your money change at each trial (flips), and see wether you win or ruin.
-                                                 You can set your own winning probability (p), if p = 0.5 then probability of losing is q = 1 - p = 0.5 (fair game with Bernoulli distribution), 
-                                                 otherwise unfair. You'll may notice that if the game is fair, your money will exhibit random walks (stochastic and unbiased) at each trial,
-                                                 and if the game is unfair, it will exhibit an upward/downward drift (biased) based on the probability favor. Nevertheless the chart you
+                                             br(h5("on each flip you will get either +1 or -1. Here you will simulate the game to see how your money change at each trial (flip), observe its movements, and see wether you end up win or ruin.
+                                                 You can set your own winning probability (p), if you set p = 0.5 then probability of losing is q = 1 - p = 0.5 (fair game with Bernoulli distribution), 
+                                                 otherwise unfair. You'll may notice that if the game is fair, your money will exhibit unbiased random walks (stochastic) at each trial,
+                                                 and if the game is unfair, it will tend to exhibit upward/downward drifts (biased) based on the probability favor. Nevertheless, the chart you
                                                    will see is the random moves of the remaining money after accumulated with the +1 or -1 result on each trial.",
                                                    br("Ruin Probability is the sum of all win or ruin results as 0 and 1, respectively, after number of monte carlo simulations divided by the number of simulations.
-                                                      It will return the probability of ruin (this will take few seconds to run."))),
-                                             br(h5("If the chart (money) hits the blue dashed line you win (and the game stops), if it hits the red dashed line (0) you lose
-                                              (ruin) and the game stops. Now fill the inputs and simulate.")))))), 
+                                                      It will return the probability of ruin (this will take few seconds to run)."))),
+                                             br(h5("Rule : If the chart (money) hits the blue dashed line you win (and the game stops), if it hits the red dashed line (0) you lose
+                                              (ruin) and the game stops. Black dashed line represents your initial money. Now fill the inputs and simulate.")))))), 
                               title = "Introduction"))})
         
         
