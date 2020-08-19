@@ -1,6 +1,11 @@
-   
 Gambler’s Ruin Problem Simulation
 Created in R language and Shiny framework
+
+## Technologies
+This app is programmed in:
+* [R language in Rstudio](https://rstudio.com/)
+* [Shiny framework](https://shiny.rstudio.com/)
+* HTML5
 
 ## Introduction
 
