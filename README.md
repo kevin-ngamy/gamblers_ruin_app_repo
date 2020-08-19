@@ -15,7 +15,7 @@ In order to run this app in your own machine you need:
  * library(shinyalert)
  * library(ggplot2)
  * library(plotly)
- 
+
 ## Introduction
 
 This is my [shinyapp
@@ -25,7 +25,7 @@ using gambler’s ruin problem as the objective. You flip a coin and
 choose for example, head. You bet your money on each flip, Each time the
 head side of the coin appeared you earn 1$ (+1), otherwise tail appeared
 you lose $1 (-1). You start with initial stake (money) of k dollar, and
-you want to make profit of e dollar (e \> k). The game stops if you
+you want to make profit of e dollar (e > k). The game stops if you
 either reach e dollar or win, or lose all your money to 0 (ruin). How
 much money you’d have after certain number of trials (flips)? Will you
 eventually reach e dollar (win) or other wise lose all your money to 0
@@ -41,7 +41,7 @@ walk (stochastic process) phenomenon in which it either unpredictably go
 or down. A stochastic process is built as follows: Let X1, X2,… be a
 sequence of i.i.d (independent and identically distributed) random
 variables with Xk = +1 with probability of P and Xk = -1 with probabiity
-of 1-P. for k 1 we set Sn = X1 + … + Xn, for n \>= 1 with S0 = 0, Then
+of 1-P. for k 1 we set Sn = X1 + … + Xn, for n >= 1 with S0 = 0, Then
 Sn is the random walk’s position after n steps. The sequence of S0, S1,
 S2… is a discrete-time stochastic process whose state space is Z, the
 set of all integers. Here you’ll find that the probability of ruin after
@@ -241,3 +241,4 @@ the monte carlo simulations, the plotting. Thank you for your attention.
 The full code is provided at
 
 Alright. That's the demo of how this program works in the backend, however the actual codes for the shinyapp is different due to additional shiny syntax like reactive(), eventReactive, isolate(), input$x, User interface codes, etc. Nevertheless, these introduction document provides you clear picture of how to generate probability and probability outcome, the functions to work on certain purpose and generate results, the monte carlo simulations, the plotting. Thank you for your attention.
+The full code is provided at
